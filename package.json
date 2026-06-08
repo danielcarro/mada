@@ -1,0 +1,35 @@
+{
+  "name": "mada-framework",
+  "version": "0.1.0",
+  "description": "MADA - configurable Multi-Agent Development Architecture for AI coding agents, model stacks and micro-memory orchestration.",
+  "type": "module",
+  "bin": {
+    "mada": "bin/mada.js",
+    "mada-init": "bin/mada.js"
+  },
+  "files": [
+    "bin",
+    "template",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "check": "node bin/mada.js --help",
+    "pack:local": "npm pack"
+  },
+  "keywords": [
+    "mada",
+    "codex",
+    "opencode",
+    "multi-agent",
+    "ai",
+    "framework",
+    "orchestration",
+    "micro-memory"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}
