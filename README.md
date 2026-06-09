@@ -1,4 +1,4 @@
-﻿# MADA - Multi-Agent Development Architecture
+# MADA - Multi-Agent Development Architecture
 
 **MADA** means **Multi-Agent Development Architecture**.
 
@@ -37,17 +37,17 @@ MADA has one default ready-to-use tool preset:
 
 Required or recommended tools depend on the selected agent stack. Common tools:
 
-- **Node.js LTS** with npm.
+- **Node.js LTS** to run the local GitHub CLI with `node bin/mada.js`.
 - **Git**, even though MADA must not run Git commands without explicit user
   authorization.
 - **PowerShell** on Windows.
 
-Quick install:
+Quick GitHub install:
 
 ```powershell
-npm install -g @openai/codex
-npm install -g opencode-ai
-npm install -g mada-framework
+git clone https://github.com/<owner>/<repo>.git mada
+cd mada
+node bin/mada.js init C:\projetos\base_ia
 cd C:\projetos\base_ia
 code .
 ```
@@ -56,78 +56,15 @@ Verify:
 
 ```powershell
 node -v
-npm -v
 codex --version
 opencode --version
-mada --version
+cd C:\projetos\mada
+node bin/mada.js --help
 ```
 
-## Install MADA By npm
+## Install MADA From GitHub
 
-After publication on npm, MADA can be installed globally:
-
-```powershell
-npm install -g mada-framework
-mada init .
-```
-
-Or used without a global install:
-
-```powershell
-npx mada-framework init .
-```
-
-Install into a specific folder:
-
-```powershell
-npx mada-framework init C:\projetos\novo-projeto
-```
-
-By default, `mada init` does not overwrite existing files. To overwrite files
-intentionally:
-
-```powershell
-mada init . --force
-```
-
-To preview the installation without writing files:
-
-```powershell
-mada init . --dry-run
-```
-
-To initialize with an agent/model preset and a language hint:
-
-```powershell
-mada init . --agent-preset codex-opencode --language typescript
-mada init . --agent-preset single-agent --language python
-mada init . --agent-preset custom --language "go + postgres"
-```
-
-Supported initial presets:
-
-- `codex-opencode`: default MADA preset.
-- `codex-only`: single-agent Codex workflow.
-- `opencode-only`: single-agent OpenCode workflow.
-- `single-agent`: generic single-agent workflow.
-- `multi-agent`: generic multi-agent workflow.
-- `custom`: user-defined agent/model stack.
-
-These CLI hints update `docs/AGENT-STACK.md`. START.md can still refine or
-replace them during discovery.
-
-Before the package is published, create and install a local tarball:
-
-```powershell
-npm pack
-npm install -g .\mada-framework-0.1.0.tgz
-mada init C:\projetos\novo-projeto
-```
-
-
-## Use MADA From GitHub Without npm Registry
-
-MADA can also be distributed through GitHub without publishing to npm.
+MADA is distributed through GitHub. No npm registry installation is required.
 
 Option 1: clone the repository and run the local CLI:
 
@@ -144,7 +81,7 @@ node bin/mada.js init C:\projetos\novo-projeto
 ```
 
 Option 3: copy the `template/` folder manually into the target project. This is
-useful when the user wants MADA as a GitHub-only framework without npm package
+useful when the user wants MADA as a GitHub-only framework without package
 installation.
 
 Recommended GitHub release contents:
@@ -154,8 +91,6 @@ Recommended GitHub release contents:
 - `bin/mada.js` CLI;
 - `README.md`;
 - `LICENSE`;
-- optional `mada-framework-<version>.tgz` for users who still want local npm
-  installation.
 
 ## Install VS Code
 
@@ -185,7 +120,6 @@ File -> Open Folder -> C:\projetos\base_ia
 
 ```powershell
 node -v
-npm -v
 ```
 
 ## Install Codex CLI
@@ -398,32 +332,21 @@ request in `tasks/AGENT-COMMUNICATION.md`.
 - Treat real code and runtime configuration as the operational source of truth.
 - If docs conflict with code, record the divergence before implementation.
 
-## Package Development
+## GitHub Release Maintenance
 
-Validate the CLI:
+Validate the CLI before publishing a GitHub release:
 
 ```powershell
 node bin/mada.js --help
 node bin/mada.js init . --dry-run
 ```
 
-Create a local npm package:
+Recommended release process:
 
-```powershell
-npm pack
-```
-
-Install the generated package locally:
-
-```powershell
-npm install -g .\mada-framework-0.1.0.tgz
-```
-
-Publish only when package name, license, version and npm account are ready:
-
-```powershell
-npm publish
-```
+1. Update the version in the project files.
+2. Confirm `README.md`, `LICENSE`, `template/` and `bin/mada.js` are included.
+3. Create a GitHub release with the source archive.
+4. Ask users to install by cloning the repository or downloading the release ZIP.
 
 
 
